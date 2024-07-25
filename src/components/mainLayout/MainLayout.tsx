@@ -15,14 +15,14 @@ export const MainLayout: React.FC<Props> = (props: Props) => {
   } = theme.useToken();
 
   return (
-    <Layout>
+    <Layout style={{background: "#1e1c22", minHeight: "100vh"}}>
       <HeaderMainLayout />
       <Content style={{ padding: "20px 48px",  }}>
         <div
           style={{
             padding: 24,
             minHeight: 600,
-            background: colorBgContainer,
+            background: "#15141",
             borderRadius: borderRadiusLG,
           }}
         >

@@ -1,0 +1,10 @@
+.gradientContainer {
+    transition: all 0.5s;
+}
+.gradientContainer:hover {
+    transform: scale(1.04);
+}
+
+.gradientContainer:hover .gradient {
+    border-radius: 8px;
+}

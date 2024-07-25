@@ -11,6 +11,7 @@ export const HeaderMainLayout: React.FC = () => {
           width: '100%',
           display: 'flex',
           alignItems: 'center',
+          background: "#15141b"
         }}
       ></Header>
     )

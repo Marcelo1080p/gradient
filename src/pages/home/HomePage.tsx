@@ -21,7 +21,7 @@ export const HomePage: React.FC = () => {
       try {
         const data = await apiGradient.getAllGradients();
         console.log("Received data:", data);
-        setGradients([...data]); 
+        setGradients([...data]);
       } catch (error) {
         console.error("Error fetching gradients:", error);
       }
@@ -29,10 +29,6 @@ export const HomePage: React.FC = () => {
 
     dataApiGradients();
   }, []);
-
-  useEffect(() => {
-    console.log("Gradients state updated:", gradients);
-  }, [gradients]);
 
   const breadcrumb = (
     <Breadcrumb>
@@ -42,22 +38,30 @@ export const HomePage: React.FC = () => {
     </Breadcrumb>
   );
 
+  const styleHome: React.CSSProperties = {
+    width: "100%",
+    height: "600px",
+    display: "flex",
+    gap: "1rem",
+    justifyContent: "center",
+    flexWrap: "wrap"
+  }
+
   return (
     <MainLayout breadcrumb={breadcrumb}>
-      <h1>
+      <section style={styleHome}>
         {gradients.length > 0 ? (
           gradients.map((gradient) => (
-            <Gradient 
+            <Gradient
               key={gradient.id}
               title="Gradient"
-              linearGradient={`${gradient.directionGradient.toLocaleLowerCase()}, ${gradient.gradientData.toLocaleLowerCase()}`}
+              linearGradient={`${gradient.directionGradient}, ${gradient.gradientData}`}
             />
-            
           ))
         ) : (
           <p>No gradients available</p>
         )}
-      </h1>
+      </section>
     </MainLayout>
   );
 };
