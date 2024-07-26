@@ -44,7 +44,10 @@ export const HomePage: React.FC = () => {
     display: "flex",
     gap: "1rem",
     justifyContent: "center",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    alignItems: "center",
+    border: "1px solid",
+    justifyItems: "center"
   }
 
   return (

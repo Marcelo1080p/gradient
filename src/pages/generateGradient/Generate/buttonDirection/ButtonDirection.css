@@ -1,0 +1,54 @@
+.btnDirection {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #8f6ae1;
+    width: 120px;
+    height: 40px;
+    color: #FFF;
+    font-weight: 400;
+    font-family: "Anton";
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8f6ae1;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+}
+
+.btnDirection::before, .btnDirection::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #72c4ec;
+    transition: all 0.3s;
+    border-radius: 50%;
+}
+
+.btnDirection::before {
+    top: -5px;
+    left: 80%;
+}
+.btnDirection::after {
+    top: 34px;
+    left: 20%;
+}
+
+.btnDirection:hover::after {
+    border-color: #8f6ae1;
+    left: 90%;
+}
+.btnDirection:hover::before {
+    border-color: #8f6ae1;
+    left: 10%;
+}
+
+.btnDirection:hover {
+    transform: scale(1.04);
+    letter-spacing: 3px;
+    border-color: #72c4ec;
+    color: #72c4ec;
+}
+

@@ -11,7 +11,7 @@ interface Props {
 
 export const MainLayout: React.FC<Props> = (props: Props) => {
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: {  borderRadiusLG },
   } = theme.useToken();
 
   return (
@@ -22,7 +22,7 @@ export const MainLayout: React.FC<Props> = (props: Props) => {
           style={{
             padding: 24,
             minHeight: 600,
-            background: "#15141",
+            background: "#15141b ",
             borderRadius: borderRadiusLG,
           }}
         >
