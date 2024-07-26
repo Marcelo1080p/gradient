@@ -2,13 +2,10 @@ import "./ButtonDirection.css";
 import React from "react";
 
 interface Props {
-    title: string
+  title: string;
+  onClick: () => void;
 }
 
-export const ButtonDirection:React.FC<Props> = (props: Props) => {
-    return(
-        <p className="btnDirection">
-            {props.title}
-        </p>
-    )
-}
+export const ButtonDirection: React.FC<Props> = ({ title, onClick }) => {
+  return <p className="btnDirection" onClick={onClick}>{title}</p>;
+};
