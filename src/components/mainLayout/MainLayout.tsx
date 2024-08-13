@@ -2,7 +2,7 @@ import React from "react";
 import { Layout, theme } from "antd";
 import { HeaderMainLayout } from "./HeaderMainLayout/HeaderMainLayout";
 
-const { Content,  } = Layout;
+const { Content } = Layout;
 
 interface Props {
   children: React.ReactNode;
@@ -11,13 +11,13 @@ interface Props {
 
 export const MainLayout: React.FC<Props> = (props: Props) => {
   const {
-    token: {  borderRadiusLG },
+    token: { borderRadiusLG },
   } = theme.useToken();
 
   return (
-    <Layout style={{background: "#1e1c22", minHeight: "100vh"}}>
+    <Layout style={{ background: "#1e1c22", minHeight: "100vh" }}>
       <HeaderMainLayout />
-      <Content style={{ padding: "20px 48px",  }}>
+      <Content style={{ padding: "20px 48px" }}>
         <div
           style={{
             padding: 24,

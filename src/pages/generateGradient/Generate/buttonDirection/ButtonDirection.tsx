@@ -7,5 +7,9 @@ interface Props {
 }
 
 export const ButtonDirection: React.FC<Props> = ({ title, onClick }) => {
-  return <p className="btnDirection" onClick={onClick}>{title}</p>;
+  return (
+    <p className="btnDirection" onClick={onClick}>
+      {title}
+    </p>
+  );
 };
