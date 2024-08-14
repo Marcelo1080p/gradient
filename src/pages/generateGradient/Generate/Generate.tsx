@@ -1,58 +1,47 @@
 import React, { useState } from "react";
-import { GradientMain } from "./gradient/GradientMain";
+import { GradientMain } from "./components/gradient/GradientMain";
 import { Row, Col } from "antd";
-import { ButtonDirection } from "./buttonDirection/ButtonDirection";
-import { SliderGradient } from "./slide/SliderGradient";
-import { Colors } from "./colors/Colors";
+import { ButtonDirection } from "./components/buttonDirection/ButtonDirection";
+import { SliderGradient } from "./components/slide/SliderGradient";
+import { Colors } from "./components/colors/Colors";
+import { GenerateStyle } from "./style/GenerateStyle";
+import { GradientServices } from "./services/GradientServices";
+import { PopoverAnime } from "../../../components/PopoverAnime/PopoverAnime";
+import { ICfgBGServices } from "./services/ICfgBGServices";
 
 export const Generate: React.FC = () => {
   const styleGenerate: React.CSSProperties = {
     border: "1px solid white",
   };
-  const styleBtns: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-  };
-  const styleMainCol: React.CSSProperties = {
-    border: "1px solid green",
-    height: 120,
-    display: "flex",
-    alignItems: "center",
-  };
+  const styleBtns = GenerateStyle.styleBtns();
+  const styleMainCol = GenerateStyle.styleMainCol();
 
   const [colors, setColors] = useState<string[]>(["#ffffff", "#00ff00"]);
   const [direction, setDirection] = useState<number>(120);
-
-  console.log(colors)
-  function onChangeBackground(
-    index: number,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) {
-    const newColor = event.target.value;
-    const updatedColors = [...colors];
-    updatedColors[index] = newColor;
-    setColors(updatedColors);
-  }
-
-  function onChangeDirection(value: number | number[]) {
-    const directionValue = Array.isArray(value) ? value[0] : value;
-    linearGradient = `linear-gradient(${directionValue}deg, ${colors.join(
-      ", "
-    )})`;
-    setDirection(directionValue);
-  }
-
-  function addNewColor() {
-    setColors([...colors, "#FF00FF"]);
-  }
-
-  let linearGradient = `linear-gradient(${direction}deg, ${colors.join(", ")})`;
+  const [cfgBG, setCfgBG] = useState<ICfgBGServices>({
+    active: false,
+    duration: 1,
+    infinite: false,
+  });
+  const updateCfgBG = (newCfg: ICfgBGServices) => {
+    setCfgBG(newCfg);
+  };
+  const linearGradient = `linear-gradient(${direction}deg, ${colors.join(
+    ", "
+  )})`;
 
   return (
     <Row style={styleGenerate}>
       <Col span={24}>
-        <GradientMain onChange={addNewColor} linearGradient={linearGradient} />
+        <GradientMain
+          active={cfgBG.active}
+          duration={cfgBG.duration}
+          infinite={cfgBG.infinite}
+          onChange={() =>
+            GradientServices.addNewColor(10, "#FF00FF", colors, setColors)
+          }
+          linearGradient={linearGradient}
+        />
       </Col>
       <Col style={styleMainCol} span={24}>
         <Col
@@ -60,16 +49,40 @@ export const Generate: React.FC = () => {
           style={{ display: "flex", gap: "0.5rem", border: "1px solid white" }}
         >
           <Col span={12} style={styleBtns}>
-            <ButtonDirection title="Left" onClick={() => setDirection(270)} />
-            <ButtonDirection title="Top" onClick={() => setDirection(0)} />
+            <ButtonDirection
+              title="Left"
+              onClick={() =>
+                GradientServices.onChangeDirection(270, setDirection)
+              }
+            />
+            <ButtonDirection
+              title="Top"
+              onClick={() =>
+                GradientServices.onChangeDirection(0, setDirection)
+              }
+            />
           </Col>
           <Col span={12} style={styleBtns}>
-            <ButtonDirection title="Bottom" onClick={() => setDirection(180)} />
-            <ButtonDirection title="Right" onClick={() => setDirection(90)} />
+            <ButtonDirection
+              title="Bottom"
+              onClick={() =>
+                GradientServices.onChangeDirection(180, setDirection)
+              }
+            />
+            <ButtonDirection
+              title="Right"
+              onClick={() =>
+                GradientServices.onChangeDirection(90, setDirection)
+              }
+            />
           </Col>
         </Col>
         <Col span={5} style={{ border: "1px solid white" }}>
-          <SliderGradient onChangeDirection={onChangeDirection} />
+          <SliderGradient
+            onChangeDirection={(value) =>
+              GradientServices.onChangeDirection(value, setDirection)
+            }
+          />
         </Col>
         <Col span={5} style={{ border: "1px solid white", color: "white" }}>
           <h2>Colors</h2>
@@ -78,11 +91,21 @@ export const Generate: React.FC = () => {
               <Colors
                 value={color}
                 key={index}
-                numColor={`${index+1}`.toString()}
-                onChange={(e) => onChangeBackground(index, e)}
+                numColor={`${index + 1}`.toString()}
+                onChange={(event) =>
+                  GradientServices.onChangeBackground(
+                    index,
+                    event,
+                    colors,
+                    setColors
+                  )
+                }
               />
             ))}
           </section>
+        </Col>
+        <Col span={5}>
+          <PopoverAnime cfgBG={cfgBG} updateCfgBG={updateCfgBG} />
         </Col>
       </Col>
     </Row>
