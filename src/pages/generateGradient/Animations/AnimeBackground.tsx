@@ -1,7 +1,7 @@
 // AnimeBackground.ts
 import { keyframes } from "styled-components";
 
-export const backgroundTransition = (duration: number, infinite: boolean) => {
+export const backgroundTransition = () => {
   return keyframes`
     from {
      background-position: 0% 50%; 

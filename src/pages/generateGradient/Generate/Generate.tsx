@@ -20,7 +20,7 @@ export const Generate: React.FC = () => {
   const [direction, setDirection] = useState<number>(120);
   const [cfgBG, setCfgBG] = useState<ICfgBGServices>({
     active: false,
-    duration: 1,
+    duration: 3,
     infinite: false,
   });
   const updateCfgBG = (newCfg: ICfgBGServices) => {
