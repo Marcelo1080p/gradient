@@ -7,7 +7,11 @@ import { Colors } from "./components/colors/Colors";
 import { GenerateStyle } from "./style/GenerateStyle";
 import { GradientServices } from "./services/GradientServices";
 import { PopoverAnime } from "./components/PopoverAnime/PopoverAnime";
+
+
 import { ICfgBGServices } from "./services/ICfgBGServices";
+import { PopoverFilter } from "./components/PopoverFilter/PopoverFilter";
+import { ICfgFilterServices } from "./services/ICfgFilterBlur";
 
 export const Generate: React.FC = () => {
   const styleGenerate: React.CSSProperties = {
@@ -24,9 +28,13 @@ export const Generate: React.FC = () => {
     infinite: false,
     direction: "",
   });
+  const[cfgBlur, setCfgBlur] = useState<ICfgFilterServices>({active: false, px: 2})
   const updateCfgBG = (newCfg: ICfgBGServices) => {
     setCfgBG(newCfg);
   };
+  const updateCfgBlur = (newFilter: ICfgFilterServices) => {
+    setCfgBlur(newFilter)
+  }
   const linearGradient = `linear-gradient(${direction}deg, ${colors.join(
     ", "
   )})`;
@@ -39,6 +47,8 @@ export const Generate: React.FC = () => {
           duration={cfgBG.duration}
           infinite={cfgBG.infinite}
           direction={cfgBG.direction}
+          activeFilter={cfgBlur.active}
+          px={cfgBlur.px}
           onChange={() =>
             GradientServices.addNewColor(10, "#FF00FF", colors, setColors)
           }
@@ -106,8 +116,9 @@ export const Generate: React.FC = () => {
             ))}
           </section>
         </Col>
-        <Col span={5}>
+        <Col span={6} style={{border: "1px solid #FFFF", display: "flex", gap: "1rem"}}>
           <PopoverAnime cfgBG={cfgBG} updateCfgBG={updateCfgBG} />
+          <PopoverFilter cfgBlur={cfgBlur} updateCfgBlur={updateCfgBlur}/>
         </Col>
       </Col>
     </Row>

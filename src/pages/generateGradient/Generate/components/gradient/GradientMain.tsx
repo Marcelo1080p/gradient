@@ -1,4 +1,4 @@
-// GradientMain.tsx
+import "./GradientMain.css";
 import React from "react";
 import styled, { css } from "styled-components";
 import { PlusOutlined } from "@ant-design/icons";
@@ -11,6 +11,8 @@ interface GradientMainProps {
   duration: number;
   infinite: boolean;
   direction: string;
+  px: number;
+  activeFilter: boolean;
 }
 
 const AnimatedDiv = styled.div<{
@@ -23,8 +25,21 @@ const AnimatedDiv = styled.div<{
   ${({ active, duration, infinite, direction }) =>
     active &&
     css`
-      animation: ${backgroundTransition(duration, infinite, direction)} ${duration}s
-        ${infinite ? "infinite" : "ease"} ${direction};
+      animation: ${backgroundTransition(duration, infinite, direction)}
+        ${duration}s ${infinite ? "infinite" : "ease"} ${direction};
+    `}
+`;
+const Filter = styled.div<{ activeFilter: boolean; px: number }>`
+  background-color: rgba(0, 0, 0, 0.849);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 200;
+  ${({ activeFilter, px }) =>
+    activeFilter &&
+    css`
+      backdrop-filter: blur(${px}px);
     `}
 `;
 
@@ -35,6 +50,8 @@ export const GradientMain: React.FC<GradientMainProps> = ({
   duration,
   infinite,
   direction,
+  px,
+  activeFilter,
 }) => {
   const style: React.CSSProperties = {
     background: linearGradient,
@@ -56,11 +73,13 @@ export const GradientMain: React.FC<GradientMainProps> = ({
       direction={direction}
       style={style}
     >
-      <PlusOutlined
-        onClick={onChange}
-        className="plus-color"
-        style={stylePlus}
-      />
+      {activeFilter && <Filter activeFilter={activeFilter} px={px}/>}
+      
+        <PlusOutlined
+          onClick={onChange}
+          className="plus-color"
+          style={stylePlus}
+        />
     </AnimatedDiv>
   );
 };

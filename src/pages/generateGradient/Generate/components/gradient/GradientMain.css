@@ -1,5 +1,8 @@
 .plus-color {
+
   transition: 0.3s all;
+
+  
 }
 
 .plus-color:hover {
@@ -8,3 +11,5 @@
   background-color: rgba(0, 0, 0, 0.849);
   transform: scale(1.05);
 }
+
+
