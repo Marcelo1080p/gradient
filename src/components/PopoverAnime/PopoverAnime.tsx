@@ -18,20 +18,23 @@ export const PopoverAnime: React.FC<PopoverProps> = ({
   const [checked, setChecked] = useState<boolean>(cfgBG.active);
   const [duration, setDuration] = useState<number>(cfgBG.duration);
   const [infinite, setInfinite] = useState<boolean>(cfgBG.infinite);
+  const [direction, setDirection] = useState<string>(cfgBG.direction);
 
   useEffect(() => {
     setChecked(cfgBG.active);
     setDuration(cfgBG.duration);
     setInfinite(cfgBG.infinite);
+    setDirection(cfgBG.direction)
   }, [cfgBG]);
 
   useEffect(() => {
     AnimationService.activeLinearBackgroundTransition(
       checked,
       duration,
-      infinite
+      infinite,
+      direction
     );
-  }, [checked, duration, infinite]);
+  }, [checked, duration, infinite, direction]);
 
   const handleDurationChange = (value: number | null) => {
     if (value !== null) {
@@ -71,7 +74,7 @@ export const PopoverAnime: React.FC<PopoverProps> = ({
 
       <Col span={24}>
         <p>Animation Direction</p>
-        <SelectDirection />
+        <SelectDirection cfgBG={cfgBG} updateCfgBG={updateCfgBG}/>
       </Col>
 
       <Col span={24}>
@@ -89,7 +92,7 @@ export const PopoverAnime: React.FC<PopoverProps> = ({
 
   return (
     <Popover
-    visible={true}
+      
       content={content}
       title="Animation info"
       className="containerPopover"

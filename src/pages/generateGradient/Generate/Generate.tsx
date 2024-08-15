@@ -22,6 +22,7 @@ export const Generate: React.FC = () => {
     active: false,
     duration: 3,
     infinite: false,
+    direction: "",
   });
   const updateCfgBG = (newCfg: ICfgBGServices) => {
     setCfgBG(newCfg);
@@ -37,6 +38,7 @@ export const Generate: React.FC = () => {
           active={cfgBG.active}
           duration={cfgBG.duration}
           infinite={cfgBG.infinite}
+          direction={cfgBG.direction}
           onChange={() =>
             GradientServices.addNewColor(10, "#FF00FF", colors, setColors)
           }

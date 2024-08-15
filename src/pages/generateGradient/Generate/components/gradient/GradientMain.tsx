@@ -10,19 +10,21 @@ interface GradientMainProps {
   active: boolean;
   duration: number;
   infinite: boolean;
+  direction: string;
 }
 
 const AnimatedDiv = styled.div<{
   active: boolean;
   duration: number;
   infinite: boolean;
+  direction: string;
 }>`
   background-size: 300% 300% !important;
-  ${({ active, duration, infinite }) =>
+  ${({ active, duration, infinite, direction }) =>
     active &&
     css`
-      animation: ${backgroundTransition} ${duration}s
-        ${infinite ? "infinite" : "ease"} linear;
+      animation: ${backgroundTransition(duration, infinite, direction)} ${duration}s
+        ${infinite ? "infinite" : "ease"} ${direction};
     `}
 `;
 
@@ -32,6 +34,7 @@ export const GradientMain: React.FC<GradientMainProps> = ({
   active,
   duration,
   infinite,
+  direction,
 }) => {
   const style: React.CSSProperties = {
     background: linearGradient,
@@ -50,6 +53,7 @@ export const GradientMain: React.FC<GradientMainProps> = ({
       active={active}
       duration={duration}
       infinite={infinite}
+      direction={direction}
       style={style}
     >
       <PlusOutlined
