@@ -1,0 +1,25 @@
+.ant-btn {
+  background-color: darkslateblue;
+  border: none;
+  font-family: "Anton";
+  color: rgba(255, 255, 255, 0.527);
+  letter-spacing: 0.5px;
+  font-weight: 100 !important;
+}
+
+.ant-btn:hover {
+  background-color: blueviolet !important;
+  color: aliceblue !important;
+  transform: scale(1.05);
+  border: none;
+}
+
+.ant-popover .ant-popover-inner {
+  background-color: #906ae123;
+  backdrop-filter: blur(100px);
+}
+
+.ant-checkbox-checked .ant-checkbox-inner  {
+  background-color: blueviolet !important;
+  color: blueviolet !important;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Select } from "antd";
-import { ICfgBGServices } from "../../../pages/generateGradient/Generate/services/ICfgBGServices";
+import { ICfgBGServices } from "../../../services/ICfgBGServices";
 
 interface Props {
   cfgBG: ICfgBGServices;

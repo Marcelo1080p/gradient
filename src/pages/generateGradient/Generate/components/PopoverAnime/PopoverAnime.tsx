@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./PopoverAnime.css";
 import { Button, Popover, Checkbox, InputNumber, Row, Col } from "antd";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
-import { AnimationService } from "../../pages/generateGradient/Generate/services/AnimationsServices";
-import { ICfgBGServices } from "../../pages/generateGradient/Generate/services/ICfgBGServices";
+import { AnimationService } from "../../services/AnimationsServices";
+import { ICfgBGServices } from "../../services/ICfgBGServices";
 import { SelectDirection } from "./selectDirection/SelectDirection";
 
 interface PopoverProps {
@@ -92,12 +92,11 @@ export const PopoverAnime: React.FC<PopoverProps> = ({
 
   return (
     <Popover
-      
       content={content}
       title="Animation info"
       className="containerPopover"
     >
-      <Button >Transition gradient</Button>
+      <Button className="btnAntd">Transition gradient</Button>
     </Popover>
   );
 };

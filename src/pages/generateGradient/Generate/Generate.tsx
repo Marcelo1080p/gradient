@@ -6,7 +6,7 @@ import { SliderGradient } from "./components/slide/SliderGradient";
 import { Colors } from "./components/colors/Colors";
 import { GenerateStyle } from "./style/GenerateStyle";
 import { GradientServices } from "./services/GradientServices";
-import { PopoverAnime } from "../../../components/PopoverAnime/PopoverAnime";
+import { PopoverAnime } from "./components/PopoverAnime/PopoverAnime";
 import { ICfgBGServices } from "./services/ICfgBGServices";
 
 export const Generate: React.FC = () => {
