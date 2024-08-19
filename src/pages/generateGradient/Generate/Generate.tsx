@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GradientMain } from "./components/gradient/GradientMain";
-import { Row, Col } from "antd";
+import { Row, Col, Button } from "antd";
 import { ButtonDirection } from "./components/buttonDirection/ButtonDirection";
 import { SliderGradient } from "./components/slide/SliderGradient";
 import { Colors } from "./components/colors/Colors";
@@ -12,6 +12,7 @@ import { PopoverAnime } from "./components/PopoverAnime/PopoverAnime";
 import { ICfgBGServices } from "./services/ICfgBGServices";
 import { PopoverFilter } from "./components/PopoverFilter/PopoverFilter";
 import { ICfgFilterServices } from "./services/ICfgFilterBlur";
+import { CopyCssService } from "./services/CopyCssService";
 
 export const Generate: React.FC = () => {
   const styleGenerate: React.CSSProperties = {
@@ -35,9 +36,9 @@ export const Generate: React.FC = () => {
   const updateCfgBlur = (newFilter: ICfgFilterServices) => {
     setCfgBlur(newFilter)
   }
-  const linearGradient = `linear-gradient(${direction}deg, ${colors.join(
+  const linearGradient = `${direction}deg, ${colors.join(
     ", "
-  )})`;
+  )}`;
 
   return (
     <Row style={styleGenerate}>
@@ -119,6 +120,7 @@ export const Generate: React.FC = () => {
         <Col span={6} style={{border: "1px solid #FFFF", display: "flex", gap: "1rem"}}>
           <PopoverAnime cfgBG={cfgBG} updateCfgBG={updateCfgBG} />
           <PopoverFilter cfgBlur={cfgBlur} updateCfgBlur={updateCfgBlur}/>
+          <Button onClick={() => CopyCssService.handleCopy(linearGradient, cfgBG.active, cfgBG.duration, cfgBG.active, cfgBG.direction)}>Copy CSS</Button>
         </Col>
       </Col>
     </Row>

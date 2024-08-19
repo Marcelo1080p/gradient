@@ -54,7 +54,7 @@ export const GradientMain: React.FC<GradientMainProps> = ({
   activeFilter,
 }) => {
   const style: React.CSSProperties = {
-    background: linearGradient,
+    background: `linear-gradient(${linearGradient})`,
     height: "400px",
     width: "100%",
     display: "flex",

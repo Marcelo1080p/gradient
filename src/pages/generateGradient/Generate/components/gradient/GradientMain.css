@@ -1,8 +1,5 @@
 .plus-color {
-
-  transition: 0.3s all;
-
-  
+  transition: 0.3s all;  
 }
 
 .plus-color:hover {
@@ -11,5 +8,27 @@
   background-color: rgba(0, 0, 0, 0.849);
   transform: scale(1.05);
 }
+
+
+
+.your-class-css {
+  background: linear-gradient(120deg, #ffffff, #00ff00);
+  background: -webkit-linear-gradient(120deg, #ffffff, #00ff00);
+  background: -moz-linear-gradient(120deg, #ffffff, #00ff00);
+  background: -o-linear-gradient(120deg, #ffffff, #00ff00);
+  background: -ms-linear-gradient(120deg, #ffffff, #00ff00);
+  /*Your animation here */
+  animation: gradientFlow 3 true ;
+  
+}
+
+@keyframes gradientFlow {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 0%;
+  }
+}  
 
 
