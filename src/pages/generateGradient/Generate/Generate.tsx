@@ -8,11 +8,13 @@ import { GenerateStyle } from "./style/GenerateStyle";
 import { GradientServices } from "./services/GradientServices";
 import { PopoverAnime } from "./components/PopoverAnime/PopoverAnime";
 
-
 import { ICfgBGServices } from "./services/ICfgBGServices";
 import { PopoverFilter } from "./components/PopoverFilter/PopoverFilter";
-import { ICfgFilterServices } from "./services/ICfgFilterBlur";
 import { CopyCssService } from "./services/CopyCssService";
+import { DownloadOutlined } from "@ant-design/icons";
+import { ICfgFilterServices } from "./services/ICfgFilterBlur";
+import { DownloadService } from "./services/DownloadService";
+
 
 export const Generate: React.FC = () => {
   const styleGenerate: React.CSSProperties = {
@@ -29,19 +31,20 @@ export const Generate: React.FC = () => {
     infinite: false,
     direction: "",
   });
-  const[cfgBlur, setCfgBlur] = useState<ICfgFilterServices>({active: false, px: 2})
+  const [cfgBlur, setCfgBlur] = useState<ICfgFilterServices>({
+    active: false,
+    px: 2,
+  });
   const updateCfgBG = (newCfg: ICfgBGServices) => {
     setCfgBG(newCfg);
   };
   const updateCfgBlur = (newFilter: ICfgFilterServices) => {
-    setCfgBlur(newFilter)
-  }
-  const linearGradient = `${direction}deg, ${colors.join(
-    ", "
-  )}`;
+    setCfgBlur(newFilter);
+  };
+  const linearGradient = `${direction}deg, ${colors.join(", ")}`;
 
   return (
-    <Row style={styleGenerate}>
+    <Row style={styleGenerate} wrap={true}>
       <Col span={24}>
         <GradientMain
           active={cfgBG.active}
@@ -56,10 +59,10 @@ export const Generate: React.FC = () => {
           linearGradient={linearGradient}
         />
       </Col>
-      <Col style={styleMainCol} span={24}>
+      <Col style={styleMainCol} span={24} className="btn-directions">
         <Col
           span={5}
-          style={{ display: "flex", gap: "0.5rem", border: "1px solid white" }}
+          style={{ display: "flex", gap: "0.5rem", border: "1px solid white"}}
         >
           <Col span={12} style={styleBtns}>
             <ButtonDirection
@@ -90,14 +93,14 @@ export const Generate: React.FC = () => {
             />
           </Col>
         </Col>
-        <Col span={5} style={{ border: "1px solid white" }}>
+        <Col span={5} style={{ border: "1px solid white" }} className="range">
           <SliderGradient
             onChangeDirection={(value) =>
               GradientServices.onChangeDirection(value, setDirection)
             }
           />
         </Col>
-        <Col span={5} style={{ border: "1px solid white", color: "white" }}>
+        <Col span={5} style={{ border: "1px solid white", color: "white" }} className="btn-colors">
           <h2>Colors</h2>
           <section style={{ display: "flex", flexWrap: "wrap" }}>
             {colors.map((color, index) => (
@@ -117,10 +120,55 @@ export const Generate: React.FC = () => {
             ))}
           </section>
         </Col>
-        <Col span={6} style={{border: "1px solid #FFFF", display: "flex", gap: "1rem"}}>
-          <PopoverAnime cfgBG={cfgBG} updateCfgBG={updateCfgBG} />
-          <PopoverFilter cfgBlur={cfgBlur} updateCfgBlur={updateCfgBlur}/>
-          <Button onClick={() => CopyCssService.handleCopy(linearGradient, cfgBG.active, cfgBG.duration, cfgBG.infinite, cfgBG.direction)}>Copy CSS</Button>
+        <Col
+          className="btn-properties"
+          span={6}
+          style={{
+            border: "1px solid #FFFF",
+            display: "flex",
+            gap: "1rem",
+            height: "80%",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Col style={{display: "flex",
+            gap: "1rem", flexDirection: "column"}}>
+            <PopoverAnime cfgBG={cfgBG} updateCfgBG={updateCfgBG} />
+            <PopoverFilter cfgBlur={cfgBlur} updateCfgBlur={updateCfgBlur} />
+          </Col>
+          <Col style={{ display: "flex",
+            gap: "1rem", flexDirection: "column"}}>
+            <Button
+              onClick={() =>
+                CopyCssService.generateCss(
+                  linearGradient,
+                  cfgBG.active,
+                  cfgBG.duration,
+                  cfgBG.infinite,
+                  cfgBG.direction
+                )
+              }
+            >
+              Copy CSS
+            </Button>
+            <Button
+              type="primary"
+              icon={<DownloadOutlined />}
+              size="middle"
+              onClick={() =>
+                DownloadService.downloadCssFile(
+                  linearGradient,
+                  cfgBG.active,
+                  cfgBG.duration,
+                  cfgBG.infinite,
+                  cfgBG.direction
+                )
+              }
+            >
+              Download CODE
+            </Button>
+          </Col>
         </Col>
       </Col>
     </Row>
