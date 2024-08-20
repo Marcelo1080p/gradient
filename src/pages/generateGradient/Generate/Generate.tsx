@@ -120,7 +120,7 @@ export const Generate: React.FC = () => {
         <Col span={6} style={{border: "1px solid #FFFF", display: "flex", gap: "1rem"}}>
           <PopoverAnime cfgBG={cfgBG} updateCfgBG={updateCfgBG} />
           <PopoverFilter cfgBlur={cfgBlur} updateCfgBlur={updateCfgBlur}/>
-          <Button onClick={() => CopyCssService.handleCopy(linearGradient, cfgBG.active, cfgBG.duration, cfgBG.active, cfgBG.direction)}>Copy CSS</Button>
+          <Button onClick={() => CopyCssService.handleCopy(linearGradient, cfgBG.active, cfgBG.duration, cfgBG.infinite, cfgBG.direction)}>Copy CSS</Button>
         </Col>
       </Col>
     </Row>

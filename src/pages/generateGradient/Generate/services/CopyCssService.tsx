@@ -9,9 +9,12 @@ export class CopyCssService {
     infinite: boolean,
     direction: string
   ) {
-    const ANIMATION_CSS = `gradientFlow ${duration} ${infinite} ${direction}`;
+
+    
+    const ANIMATION_CSS = `gradientFlow ${duration}s ${infinite ? "infinite" : "ease"} ${direction}`;
     const CODE_CSS = `
       .your-class-css {
+        background-size: 300% 300%;
         background: linear-gradient(${gradient});
         background: -webkit-linear-gradient(${gradient});
         background: -moz-linear-gradient(${gradient});
