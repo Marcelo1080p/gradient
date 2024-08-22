@@ -1,0 +1,9 @@
+.containerLayout {
+  background-image: url("./imgs/particles.webp") !important;
+  background-size: cover;
+}
+
+.containerContent {
+  background: #15141b94;
+  backdrop-filter: blur(10px);
+}

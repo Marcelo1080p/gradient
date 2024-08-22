@@ -18,7 +18,7 @@ import { DownloadService } from "./services/DownloadService";
 
 export const Generate: React.FC = () => {
   const styleGenerate: React.CSSProperties = {
-    border: "1px solid white",
+    
   };
   const styleBtns = GenerateStyle.styleBtns();
   const styleMainCol = GenerateStyle.styleMainCol();
@@ -62,7 +62,7 @@ export const Generate: React.FC = () => {
       <Col style={styleMainCol} span={24} className="btn-directions">
         <Col
           span={5}
-          style={{ display: "flex", gap: "0.5rem", border: "1px solid white"}}
+          style={{ display: "flex", gap: "0.5rem"}}
         >
           <Col span={12} style={styleBtns}>
             <ButtonDirection
@@ -93,14 +93,14 @@ export const Generate: React.FC = () => {
             />
           </Col>
         </Col>
-        <Col span={5} style={{ border: "1px solid white" }} className="range">
+        <Col span={5} className="range">
           <SliderGradient
             onChangeDirection={(value) =>
               GradientServices.onChangeDirection(value, setDirection)
             }
           />
         </Col>
-        <Col span={5} style={{ border: "1px solid white", color: "white" }} className="btn-colors">
+        <Col span={5} style={{  color: "white" }} className="btn-colors">
           <h2>Colors</h2>
           <section style={{ display: "flex", flexWrap: "wrap" }}>
             {colors.map((color, index) => (
@@ -124,7 +124,6 @@ export const Generate: React.FC = () => {
           className="btn-properties"
           span={6}
           style={{
-            border: "1px solid #FFFF",
             display: "flex",
             gap: "1rem",
             height: "80%",

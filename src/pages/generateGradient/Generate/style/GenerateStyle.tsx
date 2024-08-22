@@ -12,7 +12,6 @@ export class GenerateStyle {
 
   static styleMainCol(): React.CSSProperties {
     return {
-      border: "1px solid green",
       height: 120,
       display: "flex",
       alignItems: "center",
