@@ -8,12 +8,15 @@ interface Props {
 export const SliderGradient: React.FC<Props> = (props: Props) => {
   return (
     <Slider
-    onChange={props.onChangeDirection}
+      onChange={props.onChangeDirection}
       min={2}
       max={360}
       styles={{
         track: {
           background: "#8f6ae1",
+        },
+        rail: {
+          backgroundColor: "#906ae19a",
         },
       }}
     />

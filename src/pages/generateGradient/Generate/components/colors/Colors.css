@@ -1,0 +1,8 @@
+.containerColor:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+.containerColor {
+  transition: 0.3s all;
+}

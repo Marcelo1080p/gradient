@@ -14,12 +14,10 @@ import { CopyCssService } from "./services/CopyCssService";
 import { DownloadOutlined } from "@ant-design/icons";
 import { ICfgFilterServices } from "./services/ICfgFilterBlur";
 import { DownloadService } from "./services/DownloadService";
-
+import { PopoverRain } from "./components/PopoverRain/PopoverRain";
 
 export const Generate: React.FC = () => {
-  const styleGenerate: React.CSSProperties = {
-    
-  };
+  const styleGenerate: React.CSSProperties = {};
   const styleBtns = GenerateStyle.styleBtns();
   const styleMainCol = GenerateStyle.styleMainCol();
 
@@ -60,10 +58,7 @@ export const Generate: React.FC = () => {
         />
       </Col>
       <Col style={styleMainCol} span={24} className="btn-directions">
-        <Col
-          span={5}
-          style={{ display: "flex", gap: "0.5rem"}}
-        >
+        <Col span={5} style={{ display: "flex", gap: "0.5rem" }}>
           <Col span={12} style={styleBtns}>
             <ButtonDirection
               title="Left"
@@ -93,14 +88,23 @@ export const Generate: React.FC = () => {
             />
           </Col>
         </Col>
-        <Col span={5} className="range">
+        <Col
+          span={3}
+          className="range"
+          style={{ border: "1px solid", padding: "1rem" }}
+        >
+          <h2 style={{ textAlign: "center", color: "#FFF" }}>DEG</h2>
           <SliderGradient
             onChangeDirection={(value) =>
               GradientServices.onChangeDirection(value, setDirection)
             }
           />
         </Col>
-        <Col span={5} style={{  color: "white" }} className="btn-colors">
+        <Col
+          span={6}
+          style={{ color: "white", border: "1px solid", padding: "0 0.5rem" }}
+          className="btn-colors"
+        >
           <h2>Colors</h2>
           <section style={{ display: "flex", flexWrap: "wrap" }}>
             {colors.map((color, index) => (
@@ -131,13 +135,15 @@ export const Generate: React.FC = () => {
             justifyContent: "space-between",
           }}
         >
-          <Col style={{display: "flex",
-            gap: "1rem", flexDirection: "column"}}>
+          <Col
+            style={{ display: "flex", gap: "1rem", flexDirection: "column" }}
+          >
             <PopoverAnime cfgBG={cfgBG} updateCfgBG={updateCfgBG} />
             <PopoverFilter cfgBlur={cfgBlur} updateCfgBlur={updateCfgBlur} />
           </Col>
-          <Col style={{ display: "flex",
-            gap: "1rem", flexDirection: "column"}}>
+          <Col
+            style={{ display: "flex", gap: "1rem", flexDirection: "column" }}
+          >
             <Button
               onClick={() =>
                 CopyCssService.generateCss(
@@ -167,6 +173,9 @@ export const Generate: React.FC = () => {
             >
               Download CODE
             </Button>
+          </Col>
+          <Col>
+            <PopoverRain />
           </Col>
         </Col>
       </Col>
