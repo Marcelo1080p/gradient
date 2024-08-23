@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
 export const RainContainer = styled.div`
@@ -18,15 +18,21 @@ const rainAnimation = keyframes`
   }
 `
 
+
 const Rain = styled.span`
   position: absolute;
+  border-radius: 16px;
   background-color: pink;
   z-index: 400;
-  animation: ${rainAnimation} 10s infinite;
+  animation: ${rainAnimation} infinite;
 `;
 
 export const Stars: React.FC = () => {
-  const rainQuantity = Array.from({ length: 20 }, (_, index) => index + 1);
+  const rainQuantity = Array.from({ length: 40 }, (_, index) => index + 1);
+
+  useEffect(() => {
+
+  }, [rainQuantity])
 
   return (
     <RainContainer>

@@ -11,6 +11,6 @@ const content = (
 
 export const PopoverRain: React.FC = () => (
   <Popover content={content} title="Rain" >
-    <Button type="primary">Hover me</Button>
+    <Button type="primary">ADD RAIN</Button>
   </Popover>
 );
