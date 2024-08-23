@@ -5,8 +5,6 @@ import { PlusOutlined } from "@ant-design/icons";
 import { backgroundTransition } from "../../../Animations/AnimeBackground";
 import { Stars } from "../star/Stars";
 
-
-
 interface GradientMainProps {
   linearGradient: string;
   onChange: () => void;
@@ -16,6 +14,8 @@ interface GradientMainProps {
   direction: string;
   px: number;
   activeFilter: boolean;
+  activeRain: boolean;
+  quantityStars: number;
 }
 
 const AnimatedDiv = styled.div<{
@@ -56,6 +56,8 @@ export const GradientMain: React.FC<GradientMainProps> = ({
   direction,
   px,
   activeFilter,
+  activeRain,
+  quantityStars
 }) => {
   const style: React.CSSProperties = {
     background: `linear-gradient(${linearGradient})`,
@@ -77,7 +79,7 @@ export const GradientMain: React.FC<GradientMainProps> = ({
       direction={direction}
       style={style}
     >
-      <Stars/>
+      {activeRain && <Stars quantity={quantityStars} />}
       {activeFilter && <Filter activeFilter={activeFilter} px={px} />}
 
       <PlusOutlined

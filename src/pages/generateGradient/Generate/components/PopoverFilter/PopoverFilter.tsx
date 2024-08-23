@@ -30,7 +30,7 @@ export const PopoverFilter: React.FC<PopoverProps> = ({
     if (value != null) {
       setPx(value);
       updateCfgBlur({ ...cfgBlur, px: value });
-      console.log(px);
+      
     }
   }
 

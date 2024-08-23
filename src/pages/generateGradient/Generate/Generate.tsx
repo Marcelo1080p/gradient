@@ -15,6 +15,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { ICfgFilterServices } from "./services/ICfgFilterBlur";
 import { DownloadService } from "./services/DownloadService";
 import { PopoverRain } from "./components/PopoverRain/PopoverRain";
+import { ICfgRainServices } from "./services/ICfgRainServices";
 
 export const Generate: React.FC = () => {
   const styleGenerate: React.CSSProperties = {};
@@ -33,11 +34,18 @@ export const Generate: React.FC = () => {
     active: false,
     px: 2,
   });
+  const [activeStars, setActiveStars] = useState<ICfgRainServices>({
+    activeRain: false,
+    quantityRain: 10,
+  });
   const updateCfgBG = (newCfg: ICfgBGServices) => {
     setCfgBG(newCfg);
   };
   const updateCfgBlur = (newFilter: ICfgFilterServices) => {
     setCfgBlur(newFilter);
+  };
+  const updateCfgRain = (newRain: ICfgRainServices) => {
+    setActiveStars(newRain);
   };
   const linearGradient = `${direction}deg, ${colors.join(", ")}`;
 
@@ -55,6 +63,8 @@ export const Generate: React.FC = () => {
             GradientServices.addNewColor(10, "#FF00FF", colors, setColors)
           }
           linearGradient={linearGradient}
+          activeRain={activeStars?.activeRain}
+          quantityStars={activeStars.quantityRain}
         />
       </Col>
       <Col style={styleMainCol} span={24} className="btn-directions">
@@ -175,7 +185,7 @@ export const Generate: React.FC = () => {
             </Button>
           </Col>
           <Col>
-            <PopoverRain />
+            <PopoverRain activeRain={activeStars} updateCfgRain={updateCfgRain}/>
           </Col>
         </Col>
       </Col>

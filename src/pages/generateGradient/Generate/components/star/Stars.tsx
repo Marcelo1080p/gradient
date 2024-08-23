@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 export const RainContainer = styled.div`
@@ -12,12 +12,11 @@ export const RainContainer = styled.div`
 
 const rainAnimation = keyframes`
   from {
-    top: -135%
+    top: -180%
   } to {
     top: 120%;
   }
-`
-
+`;
 
 const Rain = styled.span`
   position: absolute;
@@ -27,12 +26,20 @@ const Rain = styled.span`
   animation: ${rainAnimation} infinite;
 `;
 
-export const Stars: React.FC = () => {
-  const rainQuantity = Array.from({ length: 40 }, (_, index) => index + 1);
+interface PropsStars {
+  quantity: number;
+}
 
+export const Stars: React.FC<PropsStars> = ({ quantity }) => {
+  const [quantityStars, setQuantityStars] = useState<number>(quantity);
+
+  const rainQuantity = Array.from(
+    { length: quantityStars },
+    (_, index) => index + 1
+  );
   useEffect(() => {
-
-  }, [rainQuantity])
+    setQuantityStars(quantity);
+  }, [quantity, quantityStars, rainQuantity.length]);
 
   return (
     <RainContainer>
@@ -40,11 +47,11 @@ export const Stars: React.FC = () => {
         <Rain
           key={index}
           style={{
-            width:  `${Math.floor(Math.random() * 5)}px`,
+            width: `${Math.floor(Math.random() * 5)}px`,
             height: `${Math.random() * 100}px`,
             left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() + 10}s`,
-            animationDuration: `${Math.floor((Math.random() + 0.1) * 10)}s`
+            animationDelay: `${Math.random() * 3}s`,
+            animationDuration: `${Math.floor((Math.random() + 0.1) * 10)}s`,
           }}
         />
       ))}
